@@ -343,6 +343,30 @@ public class U {
         NotificationManager nMgr = (NotificationManager) ctx.getSystemService(ns);
         nMgr.cancel(notifyId);
     }
+    
+      public void onBackPressed() {
+        if (currentFragment.toString().equalsIgnoreCase("MyJobFragment")
+                || currentFragment.toString().equalsIgnoreCase("NotificationFragment")
+                || currentFragment.toString().equalsIgnoreCase("InboxFragment")
+                || currentFragment.toString().equalsIgnoreCase("SettingFragment")
+                ) {
+            HomeActivityCustomer.currentFragment.delete(0, HomeActivityCustomer.currentFragment.length()).append("HomeScreen");
+            txtTitle.setText("Home");
+            getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            // menuFragment.setAdapter();
+
+            menuFragment.changeposition(0);
+        } else if (currentFragment.toString().equalsIgnoreCase("HomeScreen")) {
+
+            U.yesNoDialog(HomeActivityCustomer.this, HomeActivityCustomer.this, getString(R.string.exit_msg), "exit");
+            //finish();
+
+        } else if (currentFragment.toString().equalsIgnoreCase("HomeFragment")) {
+            //finish();
+            U.yesNoDialog(HomeActivityCustomer.this, HomeActivityCustomer.this, getString(R.string.exit_msg), "exit");
+        }
+
+    }
 
     public static String setDate(String subscriptionCreatedDate) {
 
